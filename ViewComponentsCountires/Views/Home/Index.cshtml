@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Customer>
+
+@{
+    ViewData["Title"] = "Customer";
+    Layout = "_Layout";
+}
+
+<div class="col-12 bg-primary">
+    <div class="row text-white pl-1">
+        @await Component.InvokeAsync("Country")
+    </div>
+</div>
+<div class="col-12 bg-dark">
+    <div class="row text-white pl-1">
+        @await Component.InvokeAsync("Customer")
+    </div>
+</div>
+<div class="col-12 bg-success">
+    <div class="row text-white pl-1">
+        @await Component.InvokeAsync("Derived" @*, new { useParameter = true }*@)
+    </div>
+</div>
+<div class="col-12 bg-danger">
+    <div class="row text-white pl-1">
+        @await Component.InvokeAsync("ReturningHtml")
+    </div>
+</div>
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Name</td>
+                <td>@customer.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Create a Customer</a><hr />
+
+<div class="col-12 bg-warning">
+    <div class="row text-white pl-1">
+        @await Component.InvokeAsync("Async")
+    </div>
+</div>
+<br />
+
+<div class="bg-info m-1 p-1">
+    <div class="row text-white">
+        <div class="col-7"><h1>Countries</h1></div>
+        <div class="col-5">
+            @await Component.InvokeAsync("HybridComponent")
+        </div>
+    </div>
+</div>
